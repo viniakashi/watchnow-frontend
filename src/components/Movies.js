@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 class MovieItem extends Component{
     render(){
 
@@ -7,7 +7,7 @@ class MovieItem extends Component{
             <div className="container_item">
             <img src={`http://localhost:3006/${this.props.movie.movie_img}`} alt="Rolo de Filme" />
                 <div className="container_item-descricao">
-                    <p>{this.props.movie.movie_name}</p>
+                    <Link to={`/sessao/${this.props.movie.movie_id}`} >{this.props.movie.movie_name}</Link>
                 </div>
             </div>
 

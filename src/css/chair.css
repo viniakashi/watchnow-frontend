@@ -1,0 +1,38 @@
+
+
+.container-chair{
+    width: 100%;
+}
+.chair{
+    /* background-color: red; */
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chair-info {
+    font-size: 0.6rem;
+    padding: 5px;
+    color: #fff;
+    text-align: left;
+}
+
+.tela {
+    width: 20rem;
+    height: 10px;
+    background-color: grey;
+}
+
+li {
+    color: #fff !important;
+    margin-top: 5px;
+    margin-bottom: 1.5rem;
+    border-left: 3px solid red;
+    background-color: grey;
+    padding: 3px;
+    text-decoration: none;
+}
+
+li:hover{
+    text-decoration: none;
+}

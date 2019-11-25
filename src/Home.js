@@ -4,6 +4,8 @@ import logo from './logo.svg';
 import Header from './components/Header';
 import Movies from './components/Movies';
 import HeaderImg from './assets/img/header.png'
+
+
 import './App.css';
 require('dotenv').config();
 

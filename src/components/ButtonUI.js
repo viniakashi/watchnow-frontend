@@ -32,7 +32,7 @@ export default function CustomizedButtons(props) {
   
     return (
       <div>
-        <ColorButton variant="contained" type={props.type} color="primary" className={classes.margin}>
+        <ColorButton variant="contained" type={props.type} color="primary" style={props.style}className={classes.margin}>
           {props.buttonName}
           {props.icon == "login" ? <PersonIcon /> : ''}
         </ColorButton>
