@@ -7,6 +7,16 @@ import { Link } from 'react-router-dom';
 
 export default class Header extends Component{
 
+    constructor(){
+        super();
+        this.state = {logado: ''};
+    }
+
+    componentWillMount(){
+        var usuario = localStorage.getItem('nome');
+        console.log(usuario);
+        this.setState({logado: usuario});
+    }
 
     render(){
         return(
@@ -25,12 +35,11 @@ export default class Header extends Component{
                         <input type="text" name="busca" id="busca" placeholder="Buscar" />
                     </form>
                     <img src={LookupImg} alt="Busca" /> 
-                    <Link to={'/cadastro'}> 
-                        <ButtonUI buttonName={'Registre-se'} icon="register"/>
-                    </Link>
+                    {this.state.logado != '' && this.state.logado != null ? '' : <Link to={'/cadastro'}><ButtonUI buttonName={'Registre-se'} icon="register"/></Link>}
+                    
 
                     <Link to={'/login'}> 
-                        <ButtonUI buttonName={'Login'} icon="login"/>
+                        <ButtonUI buttonName={this.state.logado != '' && this.state.logado != null ? this.state.logado : 'Login'} icon="login"/>
                     </Link>
                     
                 </div>

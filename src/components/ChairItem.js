@@ -44,13 +44,16 @@ class ChairInfo extends Component{
     render(){
 
         return(
-            <div className="d-flex justify-content-between">
+            <div className="d-flex flex-column justify-content-between">
 
                 <div>
                     <h3>Poltronas Selecionadas</h3>
                     {this.props.chairs.map(chair => {
 
-                        return chair.poltronas.map((poltrona) => {
+                        return (
+                            
+                            chair.poltronas.map((poltrona) => {
+                            
                             if(poltrona.status){
 
                                 return (
@@ -59,7 +62,8 @@ class ChairInfo extends Component{
                                     </div>
                                 );
                             }
-                        });
+                        
+                        }));
 
                     })}
                 </div>
@@ -84,8 +88,10 @@ class Chair extends Component{
     selectChair(chair, poltrona, indexChair, indexPoltrona, e){
         
         e.preventDefault();
-        var chairIndex = this._chairs[indexChair];
-        var poltronaIndex = chairIndex.poltronas[indexPoltrona];
+        
+        
+        var poltronaIndex = chair.poltronas[indexPoltrona];
+
         var chairElement = $(`#${chair.letra + poltrona.id}`);
         var action;
         
@@ -112,7 +118,7 @@ class Chair extends Component{
         
             //Atualizando  o render (ChairItem)
             PubSub.publish('chair-list', {
-                chairs: this._chairs,
+                chairs: this.props.chairs,
                 chairCount: 1,
                 action: action
             });
@@ -123,23 +129,24 @@ class Chair extends Component{
     render(){
         return(
             <div>
-            <div className="d-flex justify-content-center align-items-center flex-row">
+            <div className="d-flex justify-content-center align-items-center flex-column">
                 
             {this.props.chairs.map((chair, indexChair) => {
                 
                 return(
 
-                
-                chair.poltronas.map((poltrona, indexPoltrona) => {
+                <div className="d-flex flex-row"> 
+               {chair.poltronas.map((poltrona, indexPoltrona) => {
                 return(
                             
                              <div className="d-flex flex-column align-items-center">
                             <span className="chair" style={(!poltrona.livre ? {backgroundColor: 'grey'} : poltrona.status ? {backgroundColor: "#005eff"} : {backgroundColor: "#dc3545"})} id={ `${chair.letra + poltrona.id }` } onClick={(e) => this.selectChair(chair, poltrona, indexChair, indexPoltrona, e)}></span>
                             <p className="chair-info">{`${chair.letra} - ${poltrona.numero} `}</p>
                             </div>
-                )
-                })
+                 )})
                 
+                 }
+                 </div>
                 )
                
             })};

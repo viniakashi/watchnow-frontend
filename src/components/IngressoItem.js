@@ -8,7 +8,12 @@ export default class IngressoItem extends Component{
 
     constructor(){
         super();
-        this.state = {chairCount: []};
+        this.state = {
+            chairCount: [],
+            meia: 0,
+            inteira: 0,
+            meiaPremium: 0
+        };
     }
 
     componentWillMount(){
@@ -18,7 +23,22 @@ export default class IngressoItem extends Component{
 
     selectTipo(e){
         var option = e.target.value;
+        var tipo = e.target.id;
+     
         var chairCount = this.props.chairCount - option;
+
+        if(tipo == "meia"){
+
+            
+            this.setState({meia: option});
+
+        }else if(tipo == "inteira"){
+
+        }else if(tipo == "meia-premium"){
+
+        }
+
+        
         this.arrayMake(chairCount);
 
      
@@ -43,9 +63,9 @@ export default class IngressoItem extends Component{
         return(
             <div>
                 <div class="form-group">
-                  <label className="text-white" for="exampleFormControlSelect1"><strong>Meia (R$ 11,00)</strong></label>
-                    <select onChange={(e) => this.selectTipo(e)} class="form-control" id="exampleFormControlSelect1">
-                        <option value={0} ></option>
+                  <label className="text-white" for="meia"><strong>Meia (R$ 11,00)</strong></label>
+                    <select onChange={(e) => this.selectTipo(e)} class="form-control" id="meia">
+                        <option value={this.state.meia} >{this.state.meia}</option>
                         
                         {this.state.chairCount.map((chair, indice) => {
                             return <option value={chair} >{chair}</option>
@@ -54,8 +74,8 @@ export default class IngressoItem extends Component{
                  </div>
 
                  <div class="form-group">
-                  <label className="text-white" for="exampleFormControlSelect1"><strong>Inteira (R$ 22,00) </strong></label>
-                    <select onChange={(e) => this.selectTipo(e)} class="form-control" id="exampleFormControlSelect1">
+                  <label className="text-white" for="inteira"><strong>Inteira (R$ 22,00) </strong></label>
+                    <select onChange={(e) => this.selectTipo(e)} class="form-control" id="inteira">
                         <option>0</option>
                         {this.state.chairCount.map((chair, indice) => {
                             return <option value={chair}>{chair}</option>
@@ -64,8 +84,8 @@ export default class IngressoItem extends Component{
                  </div>
 
                  <div class="form-group">
-                  <label className="text-white" for="exampleFormControlSelect1"><strong>Meia WatchNow Premium (R$ 11,00) </strong></label>
-                    <select onChange={(e) => this.selectTipo(e)} class="form-control" id="exampleFormControlSelect1">
+                  <label className="text-white" for="meia-premium"><strong>Meia WatchNow Premium (R$ 11,00) </strong></label>
+                    <select onChange={(e) => this.selectTipo(e)} class="form-control" id="meia-premium">
                     <option>0</option>
                         {this.state.chairCount.map((chair, indice) => {
                             return <option value={chair} >{chair}</option>

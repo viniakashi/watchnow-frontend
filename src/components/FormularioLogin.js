@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ButtonUI from './ButtonUI';
 import ImageLogin from '../assets/img/joker.jpg';
+import { Redirect } from 'react-router-dom';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../css/formulario-login.css';
 
@@ -8,30 +9,35 @@ export default class FormularioLogin extends Component{
 
     constructor(){
      super();
-     
+     this.state = {redirect: false};
     }
 
     sendForm(event){
         
-        event.preventDefault();
-        console.log("Entrou");
+        // event.preventDefault();
+        // console.log("Entrou");
 
-        fetch('http://localhost:3006/', {
-            method: 'post',
-            body: `user_login=${this.login}&user_password=${this.user_password}`
-        })
-        .then(response => {
-            console.log(response);
-            response.json();
-        })
-        .then(user => {
-            console.log(user);
-        })
+        // fetch('http://localhost:3006/', {
+        //     method: 'post',
+        //     body: `user_login=${this.login}&user_password=${this.user_password}`
+        // })
+        // .then(response => {
+        //     console.log(response);
+        //     response.json();
+        // })
+        // .then(user => {
+        //     console.log(user);
+        // })
+        localStorage.setItem('nome', 'Vinicius Molina');
+        this.setState({redirect: true});
+        
 
     }
 
     render(){
-
+        if(this.state.redirect){
+            return <Redirect to="/" />
+        }
         return(
 
             <div>
